@@ -22,25 +22,16 @@ export default class ProductDatails {
 
     addProductToCart() {
         // Retrieve the existing cart data or initialize an empty array if none exists
-        let cartItems = getLocalStorage("so-cart");
-
-        if (!Array.isArray(cartItems)) {
-            // Ensure cart is an array
-            cartItems = [];
-        }
-        // Add the new product to the cart array
+        const cartItems = getLocalStorage("so-cart")||[];
         cartItems.push(this.product);
-        // Store the updated array as a JSON string
         setLocalStorage("so-cart", cartItems);
-
     }
-
     renderProductDetails() {
-        htmlTemplate(this.product);
+        productDetailsTemplate(this.product);
     }
 }
 
-function htmlTemplate(product) {
+function productDetailsTemplate(product) {
     document.querySelector('h2').textContent = product.Brand.Name;
     document.querySelector('h3').textContent = product.NameWithoutBrand;
 
